@@ -26,7 +26,9 @@ public class Ruolo {
 
 	public Ruolo() {
 	}
-
+	public Ruolo( String codice) {;
+		this.codice = codice;
+	}
 	public Ruolo(String descrizione, String codice) {
 		this.descrizione = descrizione;
 		this.codice = codice;

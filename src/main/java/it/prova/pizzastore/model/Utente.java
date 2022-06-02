@@ -58,12 +58,24 @@ public class Utente {
 		this.password = password;
 	}
 
-	public Utente(String username, String password, String nome, String cognome, Date dateCreated) {
+	public Utente(String username, String password, String nome, String cognome) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
 		this.cognome = cognome;
-		this.dateCreated = dateCreated;
+	}
+
+
+	public Utente(String username, String password, String nome, String cognome, StatoUtente stato, List<Ordine> ordini,
+			Set<Ruolo> ruoli) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.stato = stato;
+		this.ordini = ordini;
+		this.ruoli = ruoli;
 	}
 
 	public Long getId() {
