@@ -41,10 +41,10 @@ public class Utente {
 	// se non uso questa annotation viene gestito come un intero
 	@Enumerated(EnumType.STRING)
 	private StatoUtente stato = StatoUtente.CREATO;
-	
-	@OneToMany(mappedBy="utente")
-    private List<Ordine> ordini = new ArrayList<Ordine>();
-	
+
+	@OneToMany(mappedBy = "utente")
+	private List<Ordine> ordini = new ArrayList<Ordine>();
+
 	@ManyToMany
 	@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
 	private Set<Ruolo> ruoli = new HashSet<>(0);
@@ -133,6 +133,22 @@ public class Utente {
 	public boolean isAdmin() {
 		for (Ruolo ruoloItem : ruoli) {
 			if (ruoloItem.getCodice().equals(Ruolo.ADMIN_ROLE))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean isPizzaiolo() {
+		for (Ruolo ruoloItem : ruoli) {
+			if (ruoloItem.getCodice().equals(Ruolo.PIZZAIOLO_ROLE))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean isFattorino() {
+		for (Ruolo ruoloItem : ruoli) {
+			if (ruoloItem.getCodice().equals(Ruolo.FATTORINO_ROLE))
 				return true;
 		}
 		return false;
