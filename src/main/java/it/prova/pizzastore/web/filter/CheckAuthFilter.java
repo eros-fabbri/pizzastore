@@ -18,7 +18,7 @@ import it.prova.pizzastore.model.Utente;
 public class CheckAuthFilter implements Filter {
 
 	private static final String HOME_PATH = "";
-	private static final String[] EXCLUDED_URLS = {"/index.jsp","/login.jsp","/LoginServlet","/LogoutServlet","/assets/"};
+	private static final String[] EXCLUDED_URLS = {"/login.jsp","/LoginServlet","/LogoutServlet","/assets/"};
 	private static final String[] ADMIN_URLS = {"/admin/", };
 	private static final String[] PIZZAIOLO_URLS = {"/pizzaiolo/", };
 	private static final String[] FATTORINO_URLS = {"/fattorino/", };
@@ -46,29 +46,30 @@ public class CheckAuthFilter implements Filter {
 		//se non lo e' bisogna controllare sia sessione che percorsi protetti
 		if (!isInWhiteList) {
 			Utente utenteInSession = (Utente)httpRequest.getSession().getAttribute("userInfo");
+			
+			
 			//intanto verifico se utente in sessione
 			if (utenteInSession == null) {
-				httpResponse.sendRedirect("./index.jsp");
+				httpResponse.sendRedirect("./login.jsp");
 				return;
 			}
+			System.out.println(utenteInSession.isFattorino());
 			//controllo che utente abbia ruolo admin se nel path risulta presente /admin/
-			if(isPathForOnlyAdministrators(pathAttuale) && !utenteInSession.isAdmin()) {
-				httpRequest.setAttribute("messaggio", "Non si è autorizzati alla navigazione richiesta");
-				httpRequest.getRequestDispatcher("./index.jsp").forward(httpRequest, httpResponse);
+			if(isPathForOnlyAdministrators(pathAttuale) && utenteInSession.isAdmin()) {
+				httpRequest.getRequestDispatcher(httpRequest.getContextPath()).forward(httpRequest, httpResponse);
 				return;
 			}
-			if(isPathForFattorini(pathAttuale) && !utenteInSession.isFattorino()) {
-				httpRequest.setAttribute("messaggio", "Non si è autorizzati alla navigazione richiesta");
-				httpRequest.getRequestDispatcher("./index.jsp").forward(httpRequest, httpResponse);
+			if(isPathForFattorini(pathAttuale) && utenteInSession.isFattorino()) {
+				System.out.println("FATTORINO BECCATO");
+				httpRequest.getRequestDispatcher(httpRequest.getContextPath()).forward(httpRequest, httpResponse);
 				return;
 			}
-			if(isPathForPizzaioli(pathAttuale) && !utenteInSession.isPizzaiolo()) {
-				httpRequest.setAttribute("messaggio", "Non si è autorizzati alla navigazione richiesta");
-				httpRequest.getRequestDispatcher("./index.jsp").forward(httpRequest, httpResponse);
+			if(isPathForPizzaioli(pathAttuale) && utenteInSession.isPizzaiolo()) {
+				httpRequest.getRequestDispatcher(httpRequest.getContextPath()).forward(httpRequest, httpResponse);
 				return;
 			}
 		}
-
+	
 		chain.doFilter(request, response);
 	}
 	

@@ -37,13 +37,15 @@ public class LoginServlet extends HttpServlet {
 		if(loginInput.equals("fattorino") && passwordInput.equals("fattorino")) {
 			Utente utenteUserInfo = new Utente(loginInput, passwordInput, "Classic", "User");
 			utenteUserInfo.getRuoli().add(new Ruolo(Ruolo.FATTORINO_ROLE));
+			
 			request.getSession().setAttribute("userInfo", utenteUserInfo);
 			request.getRequestDispatcher("/fattorino/index.jsp").forward(request, response);
 			return;
 		}
-		if(loginInput.equals("fattorino") && passwordInput.equals("fattorino")) {
+		if(loginInput.equals("pizzaiolo") && passwordInput.equals("pizzaiolo")) {
 			Utente utenteUserInfo = new Utente(loginInput, passwordInput, "Classic", "User");
 			utenteUserInfo.getRuoli().add(new Ruolo(Ruolo.PIZZAIOLO_ROLE));
+			
 			request.getSession().setAttribute("userInfo", utenteUserInfo);
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 			return;
