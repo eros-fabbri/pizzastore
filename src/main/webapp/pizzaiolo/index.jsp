@@ -56,6 +56,7 @@
 				        <h1 class="display-5 fw-bold">Benvenuto <c:out value="${userInfo.nome}"/></h1>
 				        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. </p>
 				        <a class="btn btn-dark btn-lg" href="PrepareInsertOrdineServlet">Inserisci Ordine</a>
+				         <a class="btn btn-dark btn-lg" href="PrepareInsertPizzaServlet">Inserisci Pizza</a>
 				      </div>
 			    </div>
 			    

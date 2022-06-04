@@ -18,6 +18,7 @@ public class ListOrdiniServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			request.setAttribute("listaOrdiniAttribute", MyServiceFactory.getOrdineServiceInstance().listAll());
+			//aggiungere calcolo prezzo qui o all'inserimento
 		} catch (Exception e) {
 			//qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();

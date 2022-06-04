@@ -12,7 +12,7 @@
 <body class="d-flex flex-column h-100">
 
 	<!-- Fixed navbar -->
-	<jsp:include page="../pizzaiolo_navbar.jsp"></jsp:include>
+	<jsp:include page="../navbar.jsp"></jsp:include>
 
 
 	<!-- Begin page content -->
@@ -45,7 +45,7 @@
 						<div class="col-md-6">
 							<label for="codice" class="form-label">Codice</label> <input
 								type="text" name="codice" id="codice" class="form-control"
-								placeholder="Inserire il codice" value="${ordine.codice }">
+								placeholder="Inserire il codice" value="${ordine.codice}">
 						</div>
 
 
