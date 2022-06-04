@@ -47,40 +47,40 @@
 					<h5>Lista dei risultati</h5>
 				</div>
 				<div class='card-body'>
-					<a class="btn btn-primary " href="PrepareInsertArticoloServlet">Add
-						New</a>
+					
 
 					<div class='table-responsive'>
 						<table class='table table-striped '>
 							<thead>
 								<tr>
 									<th>Id</th>
-									<th>Codice</th>
-									<th>Prezzo Totale</th>
+									<th>Descrizione</th>
+									<th>Prezzo singolo</th>
+									<th>Azioni</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${listaPizzeAttribute}" var="pizzaItem">
-								<c:if test="${pizzaItem.active == true}" var="booleanValue">
-									<tr>
-										<td><c:out value="${pizzaItem.id}" />/td>
-										<td><c:out value="${pizzaItem.descrizione}" />/td>
-										<td><c:out value="${pizzaItem.prezzoBase}" /></td>
-										<td><a class="btn  btn-sm btn-outline-secondary"
-											href="ExecuteVisualizzaPizzaServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Visualizza</a>
-										</td>
-										<td><a class="btn  btn-sm btn-outline-secondary"
-											href="ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Modifica</a>
-										</td>
-										<td><a class="btn  btn-sm btn-outline-secondary"
-											href="ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Elimina</a>
-										</td>
-									</tr>
-								</c:if>
+									<c:if test="${pizzaItem.active == true}" var="booleanValue">
+										<tr>
+											<td><c:out value="${pizzaItem.id}" /></td>
+											<td><c:out value="${pizzaItem.descrizione}" /></td>
+											<td><c:out value="${pizzaItem.prezzoBase}" /></td>
+											<td><a class="btn  btn-sm btn-outline-dark"
+												href="ExecuteVisualizzaPizzaServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Visualizza</a>
+												<a class="btn  btn-sm btn-outline-dark"
+												href="ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Modifica</a>
+												<a class="btn  btn-sm btn-outline-dark"
+												href="ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Elimina</a>
+											</td>
+
+										</tr>
+									</c:if>
 								</c:forEach>
 
 							</tbody>
 						</table>
+						<a class="btn btn-dark float-end " href="PrepareInsertPizzaServlet">Aggiungi pizza</a>
 					</div>
 
 					<!-- end card-body -->

@@ -43,19 +43,19 @@
 
 
 						<div class="col-md-6">
-							<label for="codice" class="form-label">descrizione<span class="text-danger">*</span></label> <input
-								type="text" name="codice" id="codice" class="form-control"
+							<label for="descrizione" class="form-label">descrizione<span class="text-danger">*</span></label> <input
+								type="text" name="descrizione" id="descrizione" class="form-control"
 								placeholder="Descrizione" value="${pizza.descrizione}">
 						</div>
 						<div class="col-md-6">
-							<label for="codice" class="form-label">Lista ingredienti<span class="text-danger">*</span></label> <input
-								type="text" name="codice" id="codice" class="form-control"
+							<label for="ingredienti" class="form-label">Lista ingredienti<span class="text-danger">*</span></label> <input
+								type="text" name="ingredienti" id="ingredienti" class="form-control"
 								placeholder="Ingredienti" value="${pizza.listaIngredienti}">
 						</div>
 						
 						<div class="col-md-6">
-							<label for="codice" class="form-label">Prezzo base<span class="text-danger">*</span></label> <input
-								type="number" name="codice" id="codice" class="form-control"
+							<label for="prezzobase" class="form-label">Prezzo base<span class="text-danger">*</span></label> <input
+								type="number" name="prezzobase" id="prezzobase" class="form-control"
 								placeholder="0" value="${pizza.prezzoBase}">
 						</div>
 

@@ -48,6 +48,7 @@ public class FormUtility {
 		if(NumberUtils.isCreatable(prezzoBase)) {
 			pizzaFromParams.setPrezzoBase(Integer.parseInt(prezzoBase));
 		}
+		pizzaFromParams.setActive(true);
 		return pizzaFromParams;
 		
 	}

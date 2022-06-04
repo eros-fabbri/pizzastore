@@ -16,17 +16,7 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="HomeRedirectServlet">Home</a></li>
 						
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="dropdown07"
-						data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-						<ul class="dropdown-menu" aria-labelledby="dropdown07">
-							<li><a class="dropdown-item" href="ListArticoliServlet">Lista
-									Elementi</a></li>
-							<li><a class="dropdown-item"
-								href="PrepareInsertArticoloServlet">Inserisci Nuovo</a></li>
-							<li><a class="dropdown-item"
-								href="PrepareSearchArticoloServlet">Ricerca</a></li>
-						</ul></li>
+					
 				</ul>
 			</div>
 			<div class="col-md-3 text-end" >

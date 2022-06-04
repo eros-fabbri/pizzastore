@@ -96,4 +96,11 @@ public class Pizza {
 		this.active = active;
 	}
 
+	@Override
+	public String toString() {
+		return "Pizza [id=" + id + ", descrizione=" + descrizione + ", listaIngredienti=" + listaIngredienti
+				+ ", prezzoBase=" + prezzoBase + ", active=" + active + ", createDateTime=" + createDateTime
+				+ ", updateDateTime=" + updateDateTime + "]";
+	}
+
 }

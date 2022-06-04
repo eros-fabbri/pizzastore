@@ -21,23 +21,26 @@ public class ExecuteInsertPizzaServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String descrizioneParam = request.getParameter("descrizione");
-		String listaIngredientiParam = request.getParameter("listaIngredienti");
-		String prezzoBaseParam = request.getParameter("prezzoBase");
+		String listaIngredientiParam = request.getParameter("ingredienti");
+		String prezzoBaseParam = request.getParameter("prezzobase");
 		
+		System.out.println(prezzoBaseParam);
 		Pizza pizzaForInsert = FormUtility.createPizzaFromParams(descrizioneParam, listaIngredientiParam, prezzoBaseParam);	
-		
+		System.out.println(pizzaForInsert);
 		try {
-			if (FormUtility.validatePizzaBean(pizzaForInsert)) {
+			if (!FormUtility.validatePizzaBean(pizzaForInsert)) {
 				request.setAttribute("pizza", pizzaForInsert);
-				// questo mi serve per la select di registi in pagina
-				request.setAttribute("registi_list_attribute",
-						MyServiceFactory.getPizzaServiceInstance().listAll());
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher("/pizzaiolo/insertpizza.jsp").forward(request, response);
+				// questo mi serve per la select di registi in pagina
+				
 				return;
 			}
 			
 			MyServiceFactory.getPizzaServiceInstance().inserisciNuovo(pizzaForInsert);
+			request.setAttribute("listaPizzeAttribute",
+					MyServiceFactory.getPizzaServiceInstance().listAll());
+			
+			request.getRequestDispatcher("/pizzaiolo/results.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,6 +48,8 @@ public class ExecuteInsertPizzaServlet extends HttpServlet {
 			request.getRequestDispatcher("/pizzaiolo/index.jsp").forward(request, response);
 			return;
 		}
+		
+		
 		
 	}
 
