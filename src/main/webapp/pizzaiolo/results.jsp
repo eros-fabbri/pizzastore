@@ -53,7 +53,6 @@
 						<table class='table table-striped '>
 							<thead>
 								<tr>
-									<th>Id</th>
 									<th>Descrizione</th>
 									<th>Prezzo singolo</th>
 									<th>Azioni</th>
@@ -63,15 +62,14 @@
 								<c:forEach items="${listaPizzeAttribute}" var="pizzaItem">
 									<c:if test="${pizzaItem.active == true}" var="booleanValue">
 										<tr>
-											<td><c:out value="${pizzaItem.id}" /></td>
 											<td><c:out value="${pizzaItem.descrizione}" /></td>
 											<td><c:out value="${pizzaItem.prezzoBase}" /></td>
 											<td><a class="btn  btn-sm btn-outline-dark"
-												href="ExecuteVisualizzaPizzaServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Visualizza</a>
+												href="ExecuteShowPizzaServlet?idPizza=<c:out value="${pizzaItem.id}"/>">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-dark"
-												href="ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Modifica</a>
+												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Modifica</a>
 												<a class="btn  btn-sm btn-outline-dark"
-												href="ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Elimina</a>
+												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Elimina</a>
 											</td>
 
 										</tr>
