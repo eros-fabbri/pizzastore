@@ -38,7 +38,7 @@
 					</h6>
 
 
-					<form method="post" action="ExecuteInsertOrdineServlet"
+					<form method="post" action="ExecuteInsertPizzaServlet"
 						class="row g-3" novalidate="novalidate">
 
 
