@@ -50,7 +50,7 @@ public class CheckAuthFilter implements Filter {
 			
 			//intanto verifico se utente in sessione
 			if (utenteInSession == null) {
-				httpResponse.sendRedirect("./login.jsp");
+				httpResponse.sendRedirect("/pizzastore/login.jsp");
 				return;
 			}
 			System.out.println(utenteInSession.isFattorino());
@@ -60,11 +60,11 @@ public class CheckAuthFilter implements Filter {
 				return;
 			}
 			if(isPathForFattorini(pathAttuale) && utenteInSession.isFattorino()) {
-				System.out.println("FATTORINO BECCATO");
 				httpRequest.getRequestDispatcher(httpRequest.getContextPath()).forward(httpRequest, httpResponse);
 				return;
 			}
 			if(isPathForPizzaioli(pathAttuale) && utenteInSession.isPizzaiolo()) {
+				System.out.println(httpRequest.getContextPath());
 				httpRequest.getRequestDispatcher(httpRequest.getContextPath()).forward(httpRequest, httpResponse);
 				return;
 			}

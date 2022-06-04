@@ -43,11 +43,11 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 		if(loginInput.equals("pizzaiolo") && passwordInput.equals("pizzaiolo")) {
-			Utente utenteUserInfo = new Utente(loginInput, passwordInput, "Classic", "User");
+			Utente utenteUserInfo = new Utente(loginInput, passwordInput, "Mario", "Pizza");
 			utenteUserInfo.getRuoli().add(new Ruolo(Ruolo.PIZZAIOLO_ROLE));
 			
 			request.getSession().setAttribute("userInfo", utenteUserInfo);
-			request.getRequestDispatcher("home.jsp").forward(request, response);
+			request.getRequestDispatcher("/pizzaiolo/index.jsp").forward(request, response);
 			return;
 		}
 
