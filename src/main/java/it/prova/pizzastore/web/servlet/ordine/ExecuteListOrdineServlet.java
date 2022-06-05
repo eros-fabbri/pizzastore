@@ -1,4 +1,4 @@
-package it.prova.pizzastore.web.servlet.pizza;
+package it.prova.pizzastore.web.servlet.ordine;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,22 +10,24 @@ import javax.servlet.http.HttpServletResponse;
 import it.prova.pizzastore.service.MyServiceFactory;
 
 /**
- * Servlet implementation class ExecuteListPizzeServlet
+ * Servlet implementation class ExecuteListOrdineServlet
  */
-@WebServlet("/ExecuteListPizzeServlet")
-public class ExecuteListPizzeServlet extends HttpServlet {
+@WebServlet("/ExecuteListOrdineServlet")
+public class ExecuteListOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			request.setAttribute("listaPizzeAttribute",
-					MyServiceFactory.getPizzaServiceInstance().listAll());
+			request.setAttribute("listaOrdiniAttribute",
+					MyServiceFactory.getOrdineServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		request.getRequestDispatcher("/pizzaiolo/resultspizze.jsp").forward(request, response);
+		request.getRequestDispatcher("/pizzaiolo/resultsordini.jsp").forward(request, response);
 	}
+
+
 
 }

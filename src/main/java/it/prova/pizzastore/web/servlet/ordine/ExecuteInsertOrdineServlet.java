@@ -1,11 +1,20 @@
 package it.prova.pizzastore.web.servlet.ordine;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import it.prova.pizzastore.model.Cliente;
+import it.prova.pizzastore.model.Ordine;
+import it.prova.pizzastore.model.Pizza;
+import it.prova.pizzastore.service.MyServiceFactory;
+import it.prova.pizzastore.utility.FormUtility;
 
 /**
  * Servlet implementation class ExecuteInsertOrdineServlet
@@ -13,29 +22,48 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ExecuteInsertOrdineServlet")
 public class ExecuteInsertOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ExecuteInsertOrdineServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String[] idPizzeScelteParams = request.getParameterValues("pizzascelta");
+		String codiceParam = request.getParameter("codice");
+		String idClienteParam = request.getParameter("idcliente");
+		String dataParam = request.getParameter("data");
+
+		Cliente clienteOrdine = MyServiceFactory.getClienteServiceInstance()
+				.caricaSingoloElemento(Long.parseLong(idClienteParam));
+
+		List<Pizza> pizzeOrdine = new ArrayList<Pizza>();
+		for (String idPizzaItem : idPizzeScelteParams) {
+
+			pizzeOrdine
+					.add(MyServiceFactory.getPizzaServiceInstance().caricaSingoloElemento(Long.parseLong(idPizzaItem)));
+		}
+
+		Ordine ordine = new Ordine();
+
+		try {
+			if (!FormUtility.validatePizzaBean(pizzaForInsert)) {
+				request.setAttribute("pizza", pizzaForInsert);
+				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
+				// questo mi serve per la select di registi in pagina
+
+				return;
+			}
+
+			MyServiceFactory.getPizzaServiceInstance().inserisciNuovo(pizzaForInsert);
+			request.setAttribute("listaPizzeAttribute", MyServiceFactory.getPizzaServiceInstance().listAll());
+
+			request.getRequestDispatcher("/pizzaiolo/results.jsp").forward(request, response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.getRequestDispatcher("/pizzaiolo/index.jsp").forward(request, response);
+			return;
+		}
+
 	}
 
 }

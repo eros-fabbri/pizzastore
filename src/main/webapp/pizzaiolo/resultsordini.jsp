@@ -53,23 +53,23 @@
 						<table class='table table-striped '>
 							<thead>
 								<tr>
-									<th>Descrizione</th>
-									<th>Prezzo singolo</th>
+									<th>Codice</th>
+									<th>Prezzo totale</th>
 									<th>Azioni</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${listaPizzeAttribute}" var="pizzaItem">
-									<c:if test="${pizzaItem.active == true}" var="booleanValue">
+								<c:forEach items="${listaOrdiniAttribute}" var="ordineItem">
+									<c:if test="${ordineItem.active == true}" var="booleanValue">
 										<tr>
-											<td><c:out value="${pizzaItem.descrizione}" /></td>
-											<td><c:out value="${pizzaItem.prezzoBase}" /></td>
+											<td><c:out value="${ordineItem.codice}" /></td>
+											<td><c:out value="${ordineItem.prezzoTotale}" /></td>
 											<td><a class="btn  btn-sm btn-outline-dark"
-												href="ExecuteShowPizzaServlet?idPizza=<c:out value="${pizzaItem.id}"/>">Visualizza</a>
+												href="ExecuteShowPizzaServlet?idOrdine=<c:out value="${ordineItem.id}"/>">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-dark"
-												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Modifica</a>
+												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${ordineItem.id}"/>">Modifica</a>
 												<a class="btn  btn-sm btn-outline-dark"
-												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${pizzaItem.id}"/>">Elimina</a>
+												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${ordineItem.id}"/>">Elimina</a>
 											</td>
 
 										</tr>
@@ -78,7 +78,7 @@
 
 							</tbody>
 						</table>
-						<a class="btn btn-dark float-end " href="PrepareInsertPizzaServlet">Aggiungi pizza</a>
+						<a class="btn btn-dark float-end " href="PrepareInsertOrdineServlet">Aggiungi ordine</a>
 					</div>
 
 					<!-- end card-body -->

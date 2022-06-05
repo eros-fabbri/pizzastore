@@ -52,5 +52,11 @@ public class FormUtility {
 		return pizzaFromParams;
 		
 	}
+	
+	public static Ordine createOrdineFromParams(String codice, String utenteId, String clienteId, String[] idPizze) {
+		return null;
+		
+		
+	}
 }
 

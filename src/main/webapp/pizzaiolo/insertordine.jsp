@@ -60,8 +60,8 @@
 						</div>
 
 						<div class="col-md-6">
-							<label for="ordine.id">Cliente</label> <select
-								class="form-select" id="ordine.id" name="ordine.id">
+							<label for="idcliente">Cliente</label> <select
+								class="form-select" id="idcliente" name="idcliente">
 								<option value="" selected>-- Selezionare un cliente --
 								</option>
 								<c:forEach items="${clienti_attribute}" var="clienteItem">
@@ -71,25 +71,18 @@
 								</c:forEach>
 							</select>
 						</div>
-						<div class="col-md-6" >
-							<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox"
-								id="inlineCheckbox1" value="option1" /> <label
-								class="form-check-label" for="inlineCheckbox1">Margherita</label>
-						</div>
 
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox"
-								id="inlineCheckbox2" value="option2" /> <label
-								class="form-check-label" for="inlineCheckbox2">Diavola</label>
-						</div>
 
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox"
-								id="inlineCheckbox3" value="option3"  /> <label
-								class="form-check-label" for="inlineCheckbox3">Boscaiola</label>
-						</div>
-						</div>
+						<c:forEach items="${pizze_attribute}" var="pizzaItem">
+							<div class="col-md-6">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox"
+										id="inlineCheckbox1" name= "pizzascelta" value="<c:out value="${pizzaItem.id}"/>" /> <label
+										class="form-check-label" for="inlineCheckbox1"><c:out value="${pizzaItem.descrizione}"/></label>
+								</div>
+							</div>
+						</c:forEach>
+
 
 
 
