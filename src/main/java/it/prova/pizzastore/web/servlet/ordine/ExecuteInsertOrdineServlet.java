@@ -29,24 +29,28 @@ public class ExecuteInsertOrdineServlet extends HttpServlet {
 		String[] idPizzeScelteParams = request.getParameterValues("pizzascelta");
 		String codiceParam = request.getParameter("codice");
 		String idClienteParam = request.getParameter("idcliente");
-		String dataParam = request.getParameter("data");
 
+		String idUtenteParam = request.getParameter("idutente");
+
+		Ordine ordine = FormUtility.createOrdineFromParams(codiceParam, idUtenteParam, idClienteParam,
+				idPizzeScelteParams);
 		
-		Ordine ordine = new Ordine();
+		
 
 		try {
-//			if (!FormUtility.validatePizzaBean(ordine)) {
-//				request.setAttribute("pizza", ordine);
-//				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-//				// questo mi serve per la select di registi in pagina
-//
-//				return;
-//			}
+			if (!FormUtility.validateOrdineBean(ordine)) {
+				request.setAttribute("ordine", ordine);
+				System.out.println(ordine);
+				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
+				// questo mi serve per la select di registi in pagina
+				request.getRequestDispatcher("pizzaiolo/insertordine.jsp").forward(request, response);
+				return;
+			}
 
 			MyServiceFactory.getOrdineServiceInstance().inserisciNuovo(ordine);
 			request.setAttribute("listaPizzeAttribute", MyServiceFactory.getPizzaServiceInstance().listAll());
 
-			request.getRequestDispatcher("/pizzaiolo/results.jsp").forward(request, response);
+			request.getRequestDispatcher("pizzaiolo/resultsordini.jsp").forward(request, response);
 
 		} catch (Exception e) {
 			e.printStackTrace();

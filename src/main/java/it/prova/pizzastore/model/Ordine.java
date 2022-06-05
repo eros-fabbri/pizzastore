@@ -148,4 +148,12 @@ public class Ordine {
 		this.pizze = pizze;
 	}
 
+	@Override
+	public String toString() {
+		return "Ordine [id=" + id + ", closed=" + closed + ", codice=" + codice + ", prezzoTotale=" + prezzoTotale
+				+ ", createDateTime=" + createDateTime + ", updateDateTime=" + updateDateTime + ", utente=" + utente
+				+ ", cliente=" + cliente + ", pizze=" + pizze + "]";
+	}
+	
+	
 }

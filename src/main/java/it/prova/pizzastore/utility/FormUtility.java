@@ -1,11 +1,15 @@
 package it.prova.pizzastore.utility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.model.Pizza;
+import it.prova.pizzastore.service.MyServiceFactory;
 
 public class FormUtility {
 
@@ -52,8 +56,37 @@ public class FormUtility {
 	}
 
 	public static Ordine createOrdineFromParams(String codice, String utenteId, String clienteId, String[] idPizze) {
-		return null;
+		Ordine ordineFromParams = new Ordine();
+		List<Pizza> listaPizze = new ArrayList<Pizza>();
+		int prezzoTotale = 0;
+		ordineFromParams.setCodice(codice);
+		if (NumberUtils.isCreatable(clienteId) && NumberUtils.isCreatable(utenteId)) {
 
+			try {
+				ordineFromParams.setUtente(
+						MyServiceFactory.getUtenteServiceInstance().caricaSingoloElemento(Long.parseLong(utenteId)));
+				ordineFromParams.setCliente(
+						MyServiceFactory.getClienteServiceInstance().caricaSingoloElemento(Long.parseLong(clienteId)));
+				for (String idItem : idPizze) {
+					if (NumberUtils.isCreatable(idItem)) {
+						Pizza pizzaTemp = MyServiceFactory.getPizzaServiceInstance()
+								.caricaSingoloElemento(Long.parseLong(idItem));
+						prezzoTotale += pizzaTemp.getPrezzoBase();
+						listaPizze.add(pizzaTemp);
+
+					}
+
+				}
+				ordineFromParams.setPrezzoTotale(prezzoTotale);
+				ordineFromParams.setPizze(listaPizze);
+				ordineFromParams.setClosed(false);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return ordineFromParams;
 	}
 
 	public static Cliente createClienteFromParams(String nome, String cognome, String indirizzo) {

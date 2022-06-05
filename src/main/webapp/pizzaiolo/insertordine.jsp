@@ -48,17 +48,6 @@
 								placeholder="Inserire il codice" value="${ordine.codice}">
 						</div>
 
-
-
-						<fmt:formatDate pattern='yyyy-MM-dd' var="parsedDate" type='date'
-							value='${ordine.data}' />
-						<div class="col-md-6">
-							<label for="dataPubblicazione" class="form-label">Data</label> <input
-								class="form-control" id="data" type="date"
-								placeholder="dd/MM/yy" title="formato : gg/mm/aaaa" name="data"
-								value="${parsedDate}">
-						</div>
-
 						<div class="col-md-6">
 							<label for="idcliente">Cliente</label> <select
 								class="form-select" id="idcliente" name="idcliente">
@@ -72,10 +61,9 @@
 							</select>
 						</div>
 						<div class="col-md-6">
-							<label for="idcliente">Utente</label> <select
-								class="form-select" id="idcliente" name="idcliente">
-								<option value="" selected>-- Selezionare un utente --
-								</option>
+							<label for="idutente">Utente</label> <select class="form-select"
+								id="idutente" name="idutente">
+								<option value="" selected>-- Selezionare un utente --</option>
 								<c:forEach items="${utenti_attribute}" var="utenteItem">
 									<option value="${utenteItem.id}"
 										${ordine.utente.id == ordineItem.id?'selected':''}>${utenteItem.nome}
@@ -89,8 +77,10 @@
 							<div class="col-md-6">
 								<div class="form-check form-check-inline">
 									<input class="form-check-input" type="checkbox"
-										id="inlineCheckbox1" name= "pizzascelta" value="<c:out value="${pizzaItem.id}"/>" /> <label
-										class="form-check-label" for="inlineCheckbox1"><c:out value="${pizzaItem.descrizione}"/></label>
+										id="inlineCheckbox1" name="pizzascelta"
+										value="<c:out value="${pizzaItem.id}"/>" /> <label
+										class="form-check-label" for="inlineCheckbox1"><c:out
+											value="${pizzaItem.descrizione}" /></label>
 								</div>
 							</div>
 						</c:forEach>

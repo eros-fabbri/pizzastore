@@ -60,7 +60,7 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${listaOrdiniAttribute}" var="ordineItem">
-									<c:if test="${ordineItem.active == true}" var="booleanValue">
+									<c:if test="${ordineItem.closed != true}" var="booleanValue">
 										<tr>
 											<td><c:out value="${ordineItem.codice}" /></td>
 											<td><c:out value="${ordineItem.prezzoTotale}" /></td>

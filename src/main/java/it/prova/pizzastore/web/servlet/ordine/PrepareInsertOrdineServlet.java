@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Pizza;
+import it.prova.pizzastore.model.Utente;
 import it.prova.pizzastore.service.MyServiceFactory;
 
 /**
@@ -25,6 +26,8 @@ public class PrepareInsertOrdineServlet extends HttpServlet {
 		try {
 			List<Cliente> listaClienti = MyServiceFactory.getClienteServiceInstance().listAll();
 			List<Pizza> listaPizze = MyServiceFactory.getPizzaServiceInstance().listAll();
+			List<Utente> listaUtenti = MyServiceFactory.getUtenteServiceInstance().listAll();
+			request.setAttribute("utenti_attribute", listaUtenti);
 			request.setAttribute("clienti_attribute", listaClienti);
 			request.setAttribute("pizze_attribute", listaPizze);
 			request.getRequestDispatcher("/pizzaiolo/insertordine.jsp").forward(request, response);;
