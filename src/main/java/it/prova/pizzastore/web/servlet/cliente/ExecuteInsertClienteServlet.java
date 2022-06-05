@@ -39,7 +39,7 @@ public class ExecuteInsertClienteServlet extends HttpServlet {
 			request.setAttribute("listaClientiAttribute",
 					MyServiceFactory.getClienteServiceInstance().listAll());
 			
-			request.getRequestDispatcher("/admin/resultscliente.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/resultsclienti.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

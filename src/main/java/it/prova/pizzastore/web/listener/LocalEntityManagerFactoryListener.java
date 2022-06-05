@@ -83,16 +83,16 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 					ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ADMIN_ROLE"));
 		}
 		
-		if (utenteServiceInstance.findByUsernameAndPassword("pizzaiolouser", "pizzaiolouser") == null) {
-			Utente pizzaiolouser = new Utente("pizzaiolouser", "pizzaiolouser", "Mario", "Pizza");
+		if (utenteServiceInstance.findByUsernameAndPassword("pizzaiolo", "pizzaiolo") == null) {
+			Utente pizzaiolouser = new Utente("pizzaiolo", "pizzaiolo", "Mario", "Pizza");
 			pizzaiolouser.setStato(StatoUtente.ATTIVO);
 			utenteServiceInstance.inserisciNuovo(pizzaiolouser);
 			utenteServiceInstance.aggiungiRuolo(pizzaiolouser,
 					ruoloServiceInstance.cercaPerDescrizioneECodice("Pizzaiolo User", "PIZZAIOLO_ROLE"));
 		}
 		
-		if (utenteServiceInstance.findByUsernameAndPassword("fattorinouser", "fattorinouser") == null) {
-			Utente fattorinouser = new Utente("fattorinouser", "fattorinouser", "Rino", "Fatto");
+		if (utenteServiceInstance.findByUsernameAndPassword("fattorino", "fattorino") == null) {
+			Utente fattorinouser = new Utente("fattorino", "fattorino", "Rino", "Fatto");
 			fattorinouser.setStato(StatoUtente.ATTIVO);
 			utenteServiceInstance.inserisciNuovo(fattorinouser);
 			utenteServiceInstance.aggiungiRuolo(fattorinouser,

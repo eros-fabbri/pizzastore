@@ -25,7 +25,13 @@ public class ExecuteListOrdiniDisponibiliServlet extends HttpServlet {
 		
 		try {
 			List<Ordine> listaOrdini = MyServiceFactory.getOrdineServiceInstance().listAll();
-			request.setAttribute("results.jsp", listaOrdini);
+			
+			
+			for (Ordine ordineItem : listaOrdini) {
+				System.out.println(ordineItem.getUtente().getId());
+			}
+			
+			request.setAttribute("listaOrdiniAttribute", listaOrdini);
 			System.out.println(((Utente)request.getSession().getAttribute("userInfo")).getId());
 		} catch (Exception e) {
 			e.printStackTrace();

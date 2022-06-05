@@ -40,7 +40,7 @@ public class ExecuteInsertPizzaServlet extends HttpServlet {
 			request.setAttribute("listaPizzeAttribute",
 					MyServiceFactory.getPizzaServiceInstance().listAll());
 			
-			request.getRequestDispatcher("/pizzaiolo/results.jsp").forward(request, response);
+			request.getRequestDispatcher("/pizzaiolo/resultspizze.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

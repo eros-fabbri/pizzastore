@@ -47,9 +47,6 @@
 					<h5>Lista dei risultati</h5>
 				</div>
 				<div class='card-body'>
-					<a class="btn btn-primary " href="PrepareInsertArticoloServlet">Add
-						New</a>
-
 					<div class='table-responsive'>
 						<table class='table table-striped '>
 							<thead>
@@ -62,10 +59,10 @@
 							<tbody>
 								<c:forEach items="${listaOrdiniAttribute}" var="ordineItem">
 								<c:if test="${ordineItem.closed == false}">
-								<c:if test="${ordineItem.getUtente().getId == userInfo.getId()}" >
+								<c:if test="${ordineItem.getUtente().getId() == userInfo.getId()}" >
 									<tr>
-										<td><c:out value="${ordineItem.id}" />/td>
-										<td><c:out value="${ordineItem.codice}" />/td>
+										<td><c:out value="${ordineItem.id}" />
+										<td><c:out value="${ordineItem.codice}" />
 										<td><c:out value="${ordineItem.prezzoTotale}" /></td>
 										<td><a class="btn  btn-sm btn-outline-secondary"
 											href="ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${ordineItem.id}"/>">Visualizza</a>
