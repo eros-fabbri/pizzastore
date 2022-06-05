@@ -69,7 +69,7 @@
 												<a class="btn  btn-sm btn-outline-dark"
 												href="PrepareUpdateClientiServlet?idCliente=<c:out value="${clienteItem.id}"/>">Modifica</a>
 												<a class="btn  btn-sm btn-outline-dark"
-												href="ExecuteShowCliente?idCliente=<c:out value="${clienteItem.id}"/>">Elimina</a>
+												href="PrepareDeleteClienteServlet?idCliente=<c:out value="${clienteItem.id}"/>">Elimina</a>
 											</td>
 
 										</tr>
