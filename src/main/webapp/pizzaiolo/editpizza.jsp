@@ -38,7 +38,7 @@
 					</h6>
 
 
-					<form method="post" action="ExecuteInsertPizzaServlet"
+					<form method="post" action="ExecuteUpdatePizzaServlet"
 						class="row g-3" novalidate="novalidate">
 
 
@@ -60,7 +60,7 @@
 						</div>
 
 						
-
+						<input type="hidden"  name="id" value="${pizza.id}"> 
 
 						<div class="col-12">
 							<button type="submit" name="insertSubmit" value="insertSubmit"

@@ -65,7 +65,7 @@
 											<td><c:out value="${clienteItem.nome}" /></td>
 											<td><c:out value="${clienteItem.cognome}" /></td>
 											<td><a class="btn  btn-sm btn-outline-dark"
-												href="ExecuteShowPizzaServlet?idCliente=<c:out value="${clienteItem.id}"/>">Visualizza</a>
+												href="ExecuteShowClienteServlet?idCliente=<c:out value="${clienteItem.id}"/>">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-dark"
 												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idCliente=<c:out value="${clienteItem.id}"/>">Modifica</a>
 												<a class="btn  btn-sm btn-outline-dark"

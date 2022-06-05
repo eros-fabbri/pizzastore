@@ -37,7 +37,7 @@ public class ExecuteSearchPizzaServlet extends HttpServlet {
 			request.getRequestDispatcher("pizzaiolo/index.jsp").forward(request, response);
 			return;
 		}
-		request.getRequestDispatcher("pizzaiolo/results.jsp").forward(request, response);
+		request.getRequestDispatcher("pizzaiolo/resultspizze.jsp").forward(request, response);
 		
 		
 	}
