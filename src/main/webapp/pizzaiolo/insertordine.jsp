@@ -74,15 +74,17 @@
 
 
 						<c:forEach items="${pizze_attribute}" var="pizzaItem">
-							<div class="col-md-6">
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="checkbox"
-										id="inlineCheckbox1" name="pizzascelta"
-										value="<c:out value="${pizzaItem.id}"/>" /> <label
-										class="form-check-label" for="inlineCheckbox1"><c:out
-											value="${pizzaItem.descrizione}" /></label>
+							<c:if test="${pizzaItem.active}">
+								<div class="col-md-6">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="checkbox"
+											id="inlineCheckbox1" name="pizzascelta"
+											value="<c:out value="${pizzaItem.id}"/>" /> <label
+											class="form-check-label" for="inlineCheckbox1"><c:out
+												value="${pizzaItem.descrizione}" /></label>
+									</div>
 								</div>
-							</div>
+							</c:if>
 						</c:forEach>
 
 

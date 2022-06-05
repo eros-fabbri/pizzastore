@@ -67,9 +67,9 @@
 											<td><a class="btn  btn-sm btn-outline-dark"
 												href="ExecuteShowPizzaServlet?idPizza=<c:out value="${pizzaItem.id}"/>">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-dark"
-												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idPizza=<c:out value="${pizzaItem.id}"/>">Modifica</a>
+												href="PrepareModificaPizzaServlet?idPizza=<c:out value="${pizzaItem.id}"/>">Modifica</a>
 												<a class="btn  btn-sm btn-outline-dark"
-												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idPizza=<c:out value="${pizzaItem.id}"/>">Elimina</a>
+												href="PrepareDeletePizzaServlet?idPizza=<c:out value="${pizzaItem.id}"/>">Elimina</a>
 											</td>
 
 										</tr>
