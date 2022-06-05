@@ -30,7 +30,8 @@ public class PrepareInsertOrdineServlet extends HttpServlet {
 			request.setAttribute("utenti_attribute", listaUtenti);
 			request.setAttribute("clienti_attribute", listaClienti);
 			request.setAttribute("pizze_attribute", listaPizze);
-			request.getRequestDispatcher("/pizzaiolo/insertordine.jsp").forward(request, response);;
+			request.getRequestDispatcher("/pizzaiolo/insertordine.jsp").forward(request, response);
+			;
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,7 +39,7 @@ public class PrepareInsertOrdineServlet extends HttpServlet {
 			request.getRequestDispatcher("/pizzaiolo/index.jsp").forward(request, response);
 			return;
 		}
-		
+
 	}
 
 }

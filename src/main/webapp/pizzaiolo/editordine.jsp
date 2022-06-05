@@ -14,7 +14,7 @@
 	<!-- Fixed navbar -->
 	<jsp:include page="../navbar.jsp"></jsp:include>
 
-
+	<c:set var="ordine" value="${ordineEdit}" />
 	<!-- Begin page content -->
 	<main class="flex-shrink-0">
 		<div class="container">
@@ -79,31 +79,32 @@
 
 						<c:forEach items="${pizze_attribute}" var="pizzaItem">
 							<c:if test="${pizzaItem.active}">
-								<div class="col-md-6">
-									<c:if test="${pizze_descrizioni_attribute.contains(pizzaItem.descrizione)}">
-										<div class="form-check form-check-inline">
-											<input checked class="form-check-input" type="checkbox"
-												id="inlineCheckbox1" name="pizzascelta"
-												value="<c:out value="${pizzaItem.id}"/>" /> <label
-												class="form-check-label" for="inlineCheckbox1"><c:out
-													value="${pizzaItem.descrizione}" /></label>
-										</div>
-									</c:if>
-									<c:if test="${!pizze_descrizioni_attribute.contains(pizzaItem.descrizione)}">
-										<div class="form-check form-check-inline">
-											<input checked class="form-check-input" type="checkbox"
-												id="inlineCheckbox1" name="pizzascelta"
-												value="<c:out value="${pizzaItem.id}"/>" /> <label
-												class="form-check-label" for="inlineCheckbox1"><c:out
-													value="${pizzaItem.descrizione}" /></label>
-										</div>
-									</c:if>
-								</div>
+								<c:if test="${pizzaItem.active}">
+									<div class="col-md-6">
+										<c:if
+											test="${pizze_descrizioni_attribute.contains(pizzaItem.descrizione)}">
+											<div class="form-check form-check-inline">
+												<input checked class="form-check-input" type="checkbox"
+													id="inlineCheckbox1" name="pizzascelta"
+													value="<c:out value="${pizzaItem.id}"/>" /> <label
+													class="form-check-label" for="inlineCheckbox1"><c:out
+														value="${pizzaItem.descrizione}" /></label>
+											</div>
+										</c:if>
+										<c:if
+											test="${!pizze_descrizioni_attribute.contains(pizzaItem.descrizione)}">
+											<div class="form-check form-check-inline">
+												<input  class="form-check-input" type="checkbox"
+													id="inlineCheckbox1" name="pizzascelta"
+													value="<c:out value="${pizzaItem.id}"/>" /> <label
+													class="form-check-label" for="inlineCheckbox1"><c:out
+														value="${pizzaItem.descrizione}" /></label>
+											</div>
+										</c:if>
+									</div>
+								</c:if>
 							</c:if>
 						</c:forEach>
-
-
-
 
 						<div class="col-12">
 							<button type="submit" name="insertSubmit" value="insertSubmit"

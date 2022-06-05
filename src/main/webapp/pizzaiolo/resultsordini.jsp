@@ -65,9 +65,9 @@
 											<td><c:out value="${ordineItem.codice}" /></td>
 											<td><c:out value="${ordineItem.prezzoTotale}" /></td>
 											<td><a class="btn  btn-sm btn-outline-dark"
-												href="ExecuteShowPizzaServlet?idOrdine=<c:out value="${ordineItem.id}"/>">Visualizza</a>
+												href="ExecuteShowOrdineServlet?idOrdine=${ordineItem.id}">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-dark"
-												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${ordineItem.id}"/>">Modifica</a>
+												href="PrepareUpdateOrdineServlet?idOrdine=${ordineItem.id}">Modifica</a>
 												<a class="btn  btn-sm btn-outline-dark"
 												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${ordineItem.id}"/>">Elimina</a>
 											</td>

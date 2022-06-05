@@ -20,9 +20,11 @@ public interface OrdineService {
 	public void inserisciNuovo(Ordine input) throws Exception;
 
 	public void rimuovi(Ordine input) throws Exception;
-	
+
 	public void calcolaPrezzoOrdine(Ordine ordine) throws Exception;
 
-	//public List<Ordine> findByExample(Ordine input) throws Exception;
+	public List<Ordine> findByExample(Ordine input) throws Exception;
+
+	public Ordine caricaSingoloElementoEager(Long id) throws Exception;
 
 }

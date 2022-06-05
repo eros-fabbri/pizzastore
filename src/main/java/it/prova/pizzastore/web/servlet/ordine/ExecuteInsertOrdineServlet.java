@@ -14,6 +14,7 @@ import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.model.Pizza;
 import it.prova.pizzastore.service.MyServiceFactory;
+import it.prova.pizzastore.service.ordine.OrdineService;
 import it.prova.pizzastore.utility.FormUtility;
 
 /**
@@ -45,14 +46,14 @@ public class ExecuteInsertOrdineServlet extends HttpServlet {
 		try {
 			if (!FormUtility.validateOrdineBean(ordine)) {
 				request.setAttribute("ordine", ordine);
-				System.out.println(ordine);
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
 				// questo mi serve per la select di registi in pagina
 				request.getRequestDispatcher("pizzaiolo/insertordine.jsp").forward(request, response);
 				return;
 			}
-
-			MyServiceFactory.getOrdineServiceInstance().inserisciNuovo(ordine);
+			
+			OrdineService ordineService = MyServiceFactory.getOrdineServiceInstance();
+			//ordineService.inserisciNuovo(ordine);
 			request.setAttribute("listaPizzeAttribute", MyServiceFactory.getPizzaServiceInstance().listAll());
 
 			request.getRequestDispatcher("pizzaiolo/resultsordini.jsp").forward(request, response);
@@ -60,7 +61,7 @@ public class ExecuteInsertOrdineServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/pizzaiolo/index.jsp").forward(request, response);
+			request.getRequestDispatcher("pizzaiolo/index.jsp").forward(request, response);
 			return;
 		}
 

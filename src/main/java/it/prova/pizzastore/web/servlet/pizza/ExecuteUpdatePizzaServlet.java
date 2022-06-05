@@ -19,22 +19,24 @@ import it.prova.pizzastore.utility.FormUtility;
 @WebServlet("/ExecuteUpdatePizzaServlet")
 public class ExecuteUpdatePizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String descrizioneParam = request.getParameter("descrizione");
 		String listaIngredientiParam = request.getParameter("ingredienti");
 		String prezzoBaseParam = request.getParameter("prezzobase");
 		String idPizzaParam = request.getParameter("id");
- 		
-		if(!NumberUtils.isCreatable(idPizzaParam)) {
-			
+
+		if (!NumberUtils.isCreatable(idPizzaParam)) {
+
 		}
-		
-		Pizza pizzaForUpdate = FormUtility.createPizzaFromParams(descrizioneParam, listaIngredientiParam, prezzoBaseParam);	
-		
+
+		Pizza pizzaForUpdate = FormUtility.createPizzaFromParams(descrizioneParam, listaIngredientiParam,
+				prezzoBaseParam);
+
 		pizzaForUpdate.setId(Long.parseLong(idPizzaParam));
-		
+
 		try {
 			if (!FormUtility.validatePizzaBean(pizzaForUpdate)) {
 				request.setAttribute("pizza", pizzaForUpdate);
@@ -43,17 +45,16 @@ public class ExecuteUpdatePizzaServlet extends HttpServlet {
 				request.getRequestDispatcher("pizzaiolo/insertpizza.jsp").forward(request, response);
 				return;
 			}
-			
+
 			MyServiceFactory.getPizzaServiceInstance().aggiorna(pizzaForUpdate);
-			request.setAttribute("listaPizzeAttribute",
-					MyServiceFactory.getPizzaServiceInstance().listAll());
-			
-			request.getRequestDispatcher("/pizzaiolo/resultspizze.jsp").forward(request, response);
-			
+			request.setAttribute("listaPizzeAttribute", MyServiceFactory.getPizzaServiceInstance().listAll());
+
+			request.getRequestDispatcher("pizzaiolo/resultspizze.jsp").forward(request, response);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/pizzaiolo/index.jsp").forward(request, response);
+			request.getRequestDispatcher("pizzaiolo/index.jsp").forward(request, response);
 			return;
 		}
 	}

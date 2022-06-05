@@ -154,24 +154,41 @@ public class OrdineServiceImpl implements OrdineService {
 		}
 	}
 
+	@Override
+	public List<Ordine> findByExample(Ordine input) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-//@Override
-//public List<Ordine> findByExample(Ordine input) throws Exception {
-//	// questo è come una connection
-//			EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-//
-//			try {
-//				// uso l'injection per il dao
-//				ordineDao.setEntityManager(entityManager);
-//
-//				// eseguo quello che realmente devo fare
-//				return ordineDao.findByExample(input);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				throw e;
-//			} finally {
-//				LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-//			}
-//	}
+		try {
+			// uso l'injection per il dao
+			ordineDao.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return null; /* DA MODOFICARE */
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public Ordine caricaSingoloElementoEager(Long id) throws Exception {
+
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			ordineDao.setEntityManager(entityManager);
+
+			return ordineDao.findOneEager(id).orElse(null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
 
 }
