@@ -25,6 +25,10 @@
 							<li><a class="dropdown-item" href="PrepareSearchOrdineServlet">Ricerca
 									Ordine</a></li>
 						</c:if>
+						<c:if test="${userInfo.isAdmin()}">
+							<li><a class="dropdown-item" href="PrepareSearchClientServlet">Ricerca
+									Cliente</a></li>
+						</c:if>
 						</ul></li>
 
 				</ul>

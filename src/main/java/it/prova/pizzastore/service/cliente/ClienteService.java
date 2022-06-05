@@ -20,6 +20,6 @@ public interface ClienteService {
 
 	public void rimuovi(Cliente input) throws Exception;
 
-	//public List<Cliente> findByExample(Cliente input) throws Exception;
+	public List<Cliente> findByExample(Cliente input) throws Exception;
 
 }

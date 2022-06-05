@@ -1,11 +1,17 @@
 package it.prova.pizzastore.dao.cliente;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
+import org.apache.commons.lang3.StringUtils;
 
 import it.prova.pizzastore.model.Cliente;
+import it.prova.pizzastore.model.Pizza;
 
 public class ClienteDAOImpl implements ClienteDAO {
 
@@ -49,6 +55,35 @@ public class ClienteDAOImpl implements ClienteDAO {
 	@Override
 	public Cliente findOne(Long id) throws Exception {
 		return entityManager.find(Cliente.class, id);
+	}
+	@Override
+	public List<Cliente> findByExample(Cliente example) throws Exception {
+		Map<String, Object> paramaterMap = new HashMap<String, Object>();
+		List<String> whereClauses = new ArrayList<String>();
+
+		StringBuilder queryBuilder = new StringBuilder("select c from Cliente c where c.id = c.id ");
+
+		if (StringUtils.isNotEmpty(example.getNome())) {
+			whereClauses.add(" c.nome  like :nome ");
+			paramaterMap.put("nome", "%" + example.getNome() + "%");
+		}
+		if (StringUtils.isNotEmpty(example.getCognome())) {
+			whereClauses.add(" c.cognome like :cognome ");
+			paramaterMap.put("cognome", "%" + example.getCognome() + "%");
+		}
+		if (StringUtils.isNotEmpty(example.getIndirizzo())) {
+			whereClauses.add(" c.indirizzo like :indirizzo ");
+			paramaterMap.put("indirizzo", "%" + example.getIndirizzo() + "%");
+		}
+		queryBuilder.append(!whereClauses.isEmpty() ? " and " : "");
+		queryBuilder.append(StringUtils.join(whereClauses, " and "));
+		TypedQuery<Cliente> typedQuery = entityManager.createQuery(queryBuilder.toString(), Cliente.class);
+
+		for (String key : paramaterMap.keySet()) {
+			typedQuery.setParameter(key, paramaterMap.get(key));
+		}
+
+		return typedQuery.getResultList();
 	}
 	
 

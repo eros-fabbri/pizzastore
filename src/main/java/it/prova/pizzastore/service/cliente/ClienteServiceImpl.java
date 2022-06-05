@@ -130,23 +130,23 @@ public class ClienteServiceImpl implements ClienteService {
 
 	}
 
-//@Override
-//public List<Cliente> findByExample(Cliente input) throws Exception {
-//	// questo è come una connection
-//			EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-//
-//			try {
-//				// uso l'injection per il dao
-//				clienteDao.setEntityManager(entityManager);
-//
-//				// eseguo quello che realmente devo fare
-//				return clienteDao.findByExample(input);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				throw e;
-//			} finally {
-//				LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-//			}
-//	}
+	@Override
+	public List<Cliente> findByExample(Cliente input) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			clienteDao.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return clienteDao.findByExample(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
 
 }

@@ -30,7 +30,7 @@
 
 				<div class='card-body'>
 					<dl class="row">
-						<dt class="col-sm-3 text-right">Id</dt>
+						<dt class="col-sm-3 text-right">Id:</dt>
 						<dd class="col-sm-9">
 							<c:out value="${clienteDetail.id}" />
 						</dd>
@@ -58,7 +58,7 @@
 				</div>
 
 				<div class='card-footer'>
-					<a href="ExecuteListPizzeServlet" class='btn btn-outline-dark'
+					<a href="ExecuteListClientiServlet" class='btn btn-outline-dark'
 						style='width: 100px'> <i class='fa fa-chevron-left'></i> Indietro
 					</a>
 				</div>
