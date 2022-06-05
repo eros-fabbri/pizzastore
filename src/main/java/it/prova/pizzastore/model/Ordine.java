@@ -40,7 +40,7 @@ public class Ordine {
 	private LocalDateTime updateDateTime;
 
 	@ManyToOne
-	@JoinColumn(name = "ordine_id", nullable = false)
+	@JoinColumn(name = "utente_id", nullable = false)
 	private Utente utente;
 
 	@OneToOne(mappedBy = "ordine")

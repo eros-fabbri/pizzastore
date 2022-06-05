@@ -71,7 +71,11 @@
 								</c:forEach>
 							</select>
 						</div>
-
+						<div class="col-md-6">
+							<label for="data" class="form-label">Data</label> <input
+								class="form-control" id="data" type="date"
+								placeholder="dd/MM/yy" title="formato : gg/mm/aaaa" name="data">
+						</div>
 
 						<c:forEach items="${pizze_attribute}" var="pizzaItem">
 							<c:if test="${pizzaItem.active}">

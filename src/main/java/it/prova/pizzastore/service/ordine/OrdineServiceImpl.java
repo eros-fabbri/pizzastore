@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import it.prova.pizzastore.dao.ordine.OrdineDAO;
 import it.prova.pizzastore.model.Ordine;
+import it.prova.pizzastore.model.Utente;
 import it.prova.pizzastore.web.listener.LocalEntityManagerFactoryListener;
 
 public class OrdineServiceImpl implements OrdineService {
@@ -129,6 +130,30 @@ public class OrdineServiceImpl implements OrdineService {
 		}
 
 	}
+
+	@Override
+	public void calcolaPrezzoOrdine(Ordine ordine) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+
+			ordineDao.setEntityManager(entityManager);
+			System.out.println("QUI: --------- " + ordineDao.calcolaPrezzoOrdine(ordine).intValue());
+
+			ordine.setPrezzoTotale(ordineDao.calcolaPrezzoOrdine(ordine).intValue());
+			ordineDao.update(ordine);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+
 
 //@Override
 //public List<Ordine> findByExample(Ordine input) throws Exception {

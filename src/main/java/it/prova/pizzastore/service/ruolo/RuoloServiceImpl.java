@@ -129,24 +129,26 @@ public class RuoloServiceImpl implements RuoloService {
 		}
 
 	}
+	
+	@Override
+	public Ruolo cercaPerDescrizioneECodice(String descrizione, String codice) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-//@Override
-//public List<Ruolo> findByExample(Ruolo input) throws Exception {
-//	// questo è come una connection
-//			EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-//
-//			try {
-//				// uso l'injection per il dao
-//				ruoloDao.setEntityManager(entityManager);
-//
-//				// eseguo quello che realmente devo fare
-//				return ruoloDao.findByExample(input);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				throw e;
-//			} finally {
-//				LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-//			}
-//	}
+		try {
+			// uso l'injection per il dao
+			ruoloDao.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return ruoloDao.findByDescrizioneAndCodice(descrizione, codice);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+
 
 }

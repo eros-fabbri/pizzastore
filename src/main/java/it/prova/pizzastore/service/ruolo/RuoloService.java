@@ -19,7 +19,8 @@ public interface RuoloService {
 	public void inserisciNuovo(Ruolo input) throws Exception;
 
 	public void rimuovi(Ruolo input) throws Exception;
-
+	
+	public Ruolo cercaPerDescrizioneECodice(String descrizione, String codice) throws Exception;
 	//public List<Ruolo> findByExample(Ruolo input) throws Exception;
 
 }

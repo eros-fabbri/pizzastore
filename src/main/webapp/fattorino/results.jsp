@@ -61,7 +61,8 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${listaOrdiniAttribute}" var="ordineItem">
-								<c:if test="${ordineItem.closed == false}" var="booleanValue">
+								<c:if test="${ordineItem.closed == false}">
+								<c:if test="${ordineItem.getUtente().getId == userInfo.getId()}" >
 									<tr>
 										<td><c:out value="${ordineItem.id}" />/td>
 										<td><c:out value="${ordineItem.codice}" />/td>
@@ -70,6 +71,7 @@
 											href="ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${ordineItem.id}"/>">Visualizza</a>
 										</td>
 									</tr>
+								</c:if>
 								</c:if>
 								</c:forEach>
 

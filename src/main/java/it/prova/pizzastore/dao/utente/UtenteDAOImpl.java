@@ -1,11 +1,13 @@
 package it.prova.pizzastore.dao.utente;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import it.prova.pizzastore.model.StatoUtente;
 import it.prova.pizzastore.model.Utente;
 
 public class UtenteDAOImpl implements UtenteDAO {
@@ -53,5 +55,24 @@ public class UtenteDAOImpl implements UtenteDAO {
 		this.entityManager = entityManager;
 	}
 	
-
+	@Override
+	public Optional<Utente> findByUsernameAndPassword(String username, String password) throws Exception {
+		TypedQuery<Utente> query = entityManager.createQuery(
+				"select u FROM Utente u  " + "where u.username = :username and u.password=:password ", Utente.class);
+		query.setParameter("username", username);
+		query.setParameter("password", password);
+		return query.getResultStream().findFirst();
+	}
+	
+	@Override
+	public Optional<Utente> accedi(String username, String password) throws Exception {
+		TypedQuery<Utente> query = entityManager.createQuery(
+				"select u FROM Utente u join fetch u.ruoli r "
+						+ "where u.username = :username and u.password=:password and u.stato=:statoUtente",
+				Utente.class);
+		query.setParameter("username", username);
+		query.setParameter("password", password);
+		query.setParameter("statoUtente", StatoUtente.ATTIVO);
+		return query.getResultStream().findFirst();
+	}
 }

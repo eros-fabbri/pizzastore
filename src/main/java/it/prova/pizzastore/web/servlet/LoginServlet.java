@@ -1,7 +1,5 @@
 package it.prova.pizzastore.web.servlet;
-
 import java.io.IOException;
-import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,58 +7,50 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.prova.pizzastore.model.Ruolo;
+import org.apache.commons.lang3.StringUtils;
+
 import it.prova.pizzastore.model.Utente;
 import it.prova.pizzastore.service.MyServiceFactory;
-
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public LoginServlet() {
-        super();
-    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		throw new UnsupportedOperationException("Invocation of doGet not allowed for this Servlet");
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String loginInput = request.getParameter("inputUsername");
 		String passwordInput = request.getParameter("inputPassword");
-		
-		if(loginInput.equals("admin") && passwordInput.equals("admin")) {
-			Utente utenteUserInfo = new Utente(loginInput, passwordInput, "Classic", "User");
-			utenteUserInfo.getRuoli().add(new Ruolo(Ruolo.ADMIN_ROLE));
-			request.getSession().setAttribute("userInfo", utenteUserInfo);
-			request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
-			return;
-		}
-		
-		if(loginInput.equals("fattorino") && passwordInput.equals("fattorino")) {
-			Utente utenteUserInfo = new Utente(loginInput, passwordInput, "Fattorino", "User");
-			utenteUserInfo.getRuoli().add(new Ruolo(Ruolo.FATTORINO_ROLE));
-			
-			try {
-				MyServiceFactory.getUtenteServiceInstance().inserisciNuovo(utenteUserInfo);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			request.getSession().setAttribute("userInfo", utenteUserInfo);
-			request.getRequestDispatcher("/fattorino/index.jsp").forward(request, response);
-			return;
-		}
-		if(loginInput.equals("pizzaiolo") && passwordInput.equals("pizzaiolo")) {
-			Utente utenteUserInfo = new Utente(loginInput, passwordInput, "Mario", "Pizza");
-			utenteUserInfo.getRuoli().add(new Ruolo(Ruolo.PIZZAIOLO_ROLE));
-			
-			request.getSession().setAttribute("userInfo", utenteUserInfo);
-			request.getRequestDispatcher("/pizzaiolo/index.jsp").forward(request, response);
+
+		if (StringUtils.isEmpty(loginInput) || StringUtils.isEmpty(passwordInput)) {
+			request.setAttribute("errorMessage", "E' necessario riempire tutti i campi.");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 			return;
 		}
 
-		request.setAttribute("messaggio", "Credenziali errate");
-		request.getRequestDispatcher("login.jsp").forward(request, response);
-		
+		String destinazione = null;
+
+		try {
+			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().accedi(loginInput, passwordInput);
+			if (utenteInstance == null) {
+				request.setAttribute("errorMessage", "Utente non trovato.");
+				destinazione = "login.jsp";
+			} else {
+				request.getSession().setAttribute("userInfo", utenteInstance);
+				destinazione = "home";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			destinazione = "login.jsp";
+			request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore.");
+		}
+
+		request.getRequestDispatcher(destinazione).forward(request, response);
+
 	}
 
 }

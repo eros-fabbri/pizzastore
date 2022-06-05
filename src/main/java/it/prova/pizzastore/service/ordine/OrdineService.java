@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.prova.pizzastore.dao.ordine.OrdineDAO;
 import it.prova.pizzastore.model.Ordine;
+import it.prova.pizzastore.model.Utente;
 
 public interface OrdineService {
 
@@ -19,6 +20,8 @@ public interface OrdineService {
 	public void inserisciNuovo(Ordine input) throws Exception;
 
 	public void rimuovi(Ordine input) throws Exception;
+	
+	public void calcolaPrezzoOrdine(Ordine ordine) throws Exception;
 
 	//public List<Ordine> findByExample(Ordine input) throws Exception;
 

@@ -34,6 +34,11 @@ public class ExecuteInsertOrdineServlet extends HttpServlet {
 
 		Ordine ordine = FormUtility.createOrdineFromParams(codiceParam, idUtenteParam, idClienteParam,
 				idPizzeScelteParams);
+		try {
+			MyServiceFactory.getOrdineServiceInstance().calcolaPrezzoOrdine(ordine);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 		
 		
 

@@ -37,7 +37,7 @@ public class FormUtility {
 	public static boolean validateOrdineBean(Ordine ordineToBeVaidated) {
 		// prima controlliamo che non siano vuoti i parametri
 		if (StringUtils.isBlank(ordineToBeVaidated.getCodice()) || ordineToBeVaidated.getPizze().isEmpty()
-				|| ordineToBeVaidated.getCliente() == null || ordineToBeVaidated.getUtente() == null) {
+				/*|| ordineToBeVaidated.getCliente() == null*/ || ordineToBeVaidated.getUtente() == null) {
 			return false;
 		}
 		return true;
@@ -58,26 +58,22 @@ public class FormUtility {
 	public static Ordine createOrdineFromParams(String codice, String utenteId, String clienteId, String[] idPizze) {
 		Ordine ordineFromParams = new Ordine();
 		List<Pizza> listaPizze = new ArrayList<Pizza>();
-		int prezzoTotale = 0;
 		ordineFromParams.setCodice(codice);
 		if (NumberUtils.isCreatable(clienteId) && NumberUtils.isCreatable(utenteId)) {
 
 			try {
 				ordineFromParams.setUtente(
 						MyServiceFactory.getUtenteServiceInstance().caricaSingoloElemento(Long.parseLong(utenteId)));
-				ordineFromParams.setCliente(
-						MyServiceFactory.getClienteServiceInstance().caricaSingoloElemento(Long.parseLong(clienteId)));
+				ordineFromParams.setCliente(null);
 				for (String idItem : idPizze) {
 					if (NumberUtils.isCreatable(idItem)) {
 						Pizza pizzaTemp = MyServiceFactory.getPizzaServiceInstance()
 								.caricaSingoloElemento(Long.parseLong(idItem));
-						prezzoTotale += pizzaTemp.getPrezzoBase();
 						listaPizze.add(pizzaTemp);
 
 					}
 
 				}
-				ordineFromParams.setPrezzoTotale(prezzoTotale);
 				ordineFromParams.setPizze(listaPizze);
 				ordineFromParams.setClosed(false);
 
