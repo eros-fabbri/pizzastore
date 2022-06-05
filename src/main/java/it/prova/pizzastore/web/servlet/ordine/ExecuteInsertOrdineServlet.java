@@ -31,28 +31,19 @@ public class ExecuteInsertOrdineServlet extends HttpServlet {
 		String idClienteParam = request.getParameter("idcliente");
 		String dataParam = request.getParameter("data");
 
-		Cliente clienteOrdine = MyServiceFactory.getClienteServiceInstance()
-				.caricaSingoloElemento(Long.parseLong(idClienteParam));
-
-		List<Pizza> pizzeOrdine = new ArrayList<Pizza>();
-		for (String idPizzaItem : idPizzeScelteParams) {
-
-			pizzeOrdine
-					.add(MyServiceFactory.getPizzaServiceInstance().caricaSingoloElemento(Long.parseLong(idPizzaItem)));
-		}
-
+		
 		Ordine ordine = new Ordine();
 
 		try {
-			if (!FormUtility.validatePizzaBean(pizzaForInsert)) {
-				request.setAttribute("pizza", pizzaForInsert);
-				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-				// questo mi serve per la select di registi in pagina
+//			if (!FormUtility.validatePizzaBean(ordine)) {
+//				request.setAttribute("pizza", ordine);
+//				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
+//				// questo mi serve per la select di registi in pagina
+//
+//				return;
+//			}
 
-				return;
-			}
-
-			MyServiceFactory.getPizzaServiceInstance().inserisciNuovo(pizzaForInsert);
+			MyServiceFactory.getOrdineServiceInstance().inserisciNuovo(ordine);
 			request.setAttribute("listaPizzeAttribute", MyServiceFactory.getPizzaServiceInstance().listAll());
 
 			request.getRequestDispatcher("/pizzaiolo/results.jsp").forward(request, response);

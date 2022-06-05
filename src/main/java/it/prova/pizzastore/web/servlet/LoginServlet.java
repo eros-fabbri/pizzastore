@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 			Utente utenteUserInfo = new Utente(loginInput, passwordInput, "Classic", "User");
 			utenteUserInfo.getRuoli().add(new Ruolo(Ruolo.ADMIN_ROLE));
 			request.getSession().setAttribute("userInfo", utenteUserInfo);
-			request.getRequestDispatcher("home.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
 			return;
 		}
 		

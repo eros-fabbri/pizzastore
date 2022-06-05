@@ -71,6 +71,18 @@
 								</c:forEach>
 							</select>
 						</div>
+						<div class="col-md-6">
+							<label for="idcliente">Utente</label> <select
+								class="form-select" id="idcliente" name="idcliente">
+								<option value="" selected>-- Selezionare un utente --
+								</option>
+								<c:forEach items="${utenti_attribute}" var="utenteItem">
+									<option value="${utenteItem.id}"
+										${ordine.utente.id == ordineItem.id?'selected':''}>${utenteItem.nome}
+										${utenteItem.cognome}</option>
+								</c:forEach>
+							</select>
+						</div>
 
 
 						<c:forEach items="${pizze_attribute}" var="pizzaItem">
