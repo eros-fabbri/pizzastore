@@ -11,6 +11,8 @@ public interface PizzaService {
 	public void setPizzaDao(PizzaDAO pizzaDao);
 
 	public List<Pizza> listAll() throws Exception;
+	
+	public List<Pizza> findByExample(Pizza pizza) throws Exception;
 
 	public Pizza caricaSingoloElemento(Long idInput) throws Exception;
 

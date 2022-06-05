@@ -130,23 +130,24 @@ public class PizzaServiceImpl implements PizzaService {
 
 	}
 
-//@Override
-//public List<Pizza> findByExample(Pizza input) throws Exception {
-//	// questo è come una connection
-//			EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-//
-//			try {
-//				// uso l'injection per il dao
-//				pizzaDao.setEntityManager(entityManager);
-//
-//				// eseguo quello che realmente devo fare
-//				return pizzaDao.findByExample(input);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				throw e;
-//			} finally {
-//				LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-//			}
-//	}
+	@Override
+	public List<Pizza> findByExample(Pizza pizza) throws Exception {
+
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			pizzaDao.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return pizzaDao.findByExample(pizza);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
 
 }

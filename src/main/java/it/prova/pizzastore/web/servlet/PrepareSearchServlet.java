@@ -9,28 +9,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.prova.pizzastore.model.Utente;
 
-/**
- * Servlet implementation class HomeRedirectServlet
- */
-@WebServlet("/HomeRedirectServlet")
-public class HomeRedirectServlet extends HttpServlet {
+@WebServlet("/PrepareSearchServlet")
+public class PrepareSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		Utente utenteInSession = (Utente) request.getSession().getAttribute("userInfo");
 
 		if (utenteInSession.isFattorino()) {
-			request.getRequestDispatcher("fattorino/index.jsp").forward(request, response);
+			request.getRequestDispatcher("fattorino/search.jsp").forward(request, response);
 			return;
 		}
 		if (utenteInSession.isAdmin()) {
-			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+			request.getRequestDispatcher("admin/search.jsp").forward(request, response);
 			return;
 		}
 		if (utenteInSession.isPizzaiolo()) {
-			request.getRequestDispatcher("pizzaiolo/index.jsp").forward(request, response);
+			request.getRequestDispatcher("pizzaiolo/search.jsp").forward(request, response);
 			return;
 		}
 	}

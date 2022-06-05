@@ -7,5 +7,5 @@ import it.prova.pizzastore.model.Pizza;
 
 public interface PizzaDAO extends IBaseDAO<Pizza> {
 
-
+	public List<Pizza>  findByExample(Pizza pizza) throws Exception;
 }
