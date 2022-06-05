@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.prova.pizzastore.model.Ruolo;
 import it.prova.pizzastore.model.Utente;
+import it.prova.pizzastore.service.MyServiceFactory;
 
 
 @WebServlet("/LoginServlet")
@@ -35,8 +36,14 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		if(loginInput.equals("fattorino") && passwordInput.equals("fattorino")) {
-			Utente utenteUserInfo = new Utente(loginInput, passwordInput, "Classic", "User");
+			Utente utenteUserInfo = new Utente(loginInput, passwordInput, "Fattorino", "User");
 			utenteUserInfo.getRuoli().add(new Ruolo(Ruolo.FATTORINO_ROLE));
+			
+			try {
+				MyServiceFactory.getUtenteServiceInstance().inserisciNuovo(utenteUserInfo);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 			request.getSession().setAttribute("userInfo", utenteUserInfo);
 			request.getRequestDispatcher("/fattorino/index.jsp").forward(request, response);

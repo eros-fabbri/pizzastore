@@ -32,7 +32,7 @@ public class ExecuteInsertPizzaServlet extends HttpServlet {
 				request.setAttribute("pizza", pizzaForInsert);
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
 				// questo mi serve per la select di registi in pagina
-				
+				request.getRequestDispatcher("pizzaiolo/insertpizza.jsp").forward(request, response);
 				return;
 			}
 			

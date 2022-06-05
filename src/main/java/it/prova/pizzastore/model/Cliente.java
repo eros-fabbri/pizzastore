@@ -99,4 +99,11 @@ public class Cliente {
 		this.ordine = ordine;
 	}
 
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", indirizzo=" + indirizzo
+				+ ", active=" + active + ", ordine=" + ordine + "]";
+	}
+	
+	
 }
