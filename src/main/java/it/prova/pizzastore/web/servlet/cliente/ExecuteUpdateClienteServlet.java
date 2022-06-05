@@ -29,7 +29,10 @@ public class ExecuteUpdateClienteServlet extends HttpServlet {
 		String idClienteParam = request.getParameter("id");
  		
 		if(!NumberUtils.isCreatable(idClienteParam)) {
-			
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore");
+			// questo mi serve per la select di registi in pagina
+			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+			return;
 		}
 		
 		Cliente clienteForUpdate = FormUtility.createClienteFromParams(descrizioneParam, cognomeParam, indirizzoParam);

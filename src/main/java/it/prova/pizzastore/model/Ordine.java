@@ -2,6 +2,7 @@ package it.prova.pizzastore.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -33,6 +34,8 @@ public class Ordine {
 	private String codice;
 	@Column(name = "prezzototale")
 	private int prezzoTotale;
+	@Column(name = "data")
+	private Date data;
 
 	@CreationTimestamp
 	private LocalDateTime createDateTime;
@@ -146,6 +149,15 @@ public class Ordine {
 
 	public void setPizze(List<Pizza> pizze) {
 		this.pizze = pizze;
+	}
+	
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	@Override

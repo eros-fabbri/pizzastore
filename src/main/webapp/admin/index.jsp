@@ -56,7 +56,6 @@
 				        <h1 class="display-5 fw-bold">Benvenuto <c:out value="${userInfo.nome}"/></h1>
 				        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. </p>
 				        <a class="btn btn-dark btn-lg bg-gradient" href="ExecuteListClientiServlet">Gestisci Clienti</a>
-				         <a class="btn btn-dark btn-lg bg-gradient" href="#">Gestisci Utenti</a>
 				      </div>
 			    </div>
 			    

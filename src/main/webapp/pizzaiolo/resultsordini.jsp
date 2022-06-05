@@ -68,8 +68,8 @@
 												href="ExecuteShowOrdineServlet?idOrdine=${ordineItem.id}">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-dark"
 												href="PrepareUpdateOrdineServlet?idOrdine=${ordineItem.id}">Modifica</a>
-												<a class="btn  btn-sm btn-outline-dark"
-												href="pizzaiolo/ExecuteVisualizzaOrdineServlet?idOrdine=<c:out value="${ordineItem.id}"/>">Elimina</a>
+												<a class="btn  btn-sm btn-outline-danger"
+												href="PrepareDeleteOrdineServlet?idOrdine=${ordineItem.id}">Elimina</a>
 											</td>
 
 										</tr>

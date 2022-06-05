@@ -31,42 +31,36 @@
 					<dl class="row">
 						<dt class="col-sm-3 text-right">Id</dt>
 						<dd class="col-sm-9">
-							<c:out value="${ordineDetail.id}" />
+							<c:out value="${ordineDelete.id}" />
 						</dd>
 					</dl>
 
 					<dl class="row">
 						<dt class="col-sm-3 text-right">Codice:</dt>
 						<dd class="col-sm-9">
-							<c:out value="${ordineDetail.codice}" />
+							<c:out value="${ordineDelete.codice}" />
 						</dd>
 					</dl>
 					<dl class="row">
 						<dt class="col-sm-3 text-right">Prezzo totale:</dt>
 						<dd class="col-sm-9">
-							<c:out value="${ordineDetail.prezzoTotale}" />
+							<c:out value="${ordineDelete.prezzoTotale}" />
 						</dd>
 					</dl>
 					<dl class="row">
 						<dt class="col-sm-3 text-right">Utente:</dt>
 						<dd class="col-sm-9">
-							<c:out value="${ordineDetail.utente.nome}" />
-							<c:out value="${ordineDetail.utente.cognome}" />
+							<c:out value="${ordineDelete.utente.nome}" />
+							<c:out value="${ordineDelete.utente.cognome}" />
 						</dd>
 					</dl>
 					
 					<dl class="row">
 						<dt class="col-sm-3 text-right">Pizze:</dt>
 						<dd class="col-sm-9">
-							<c:forEach items="${ordineDetail.pizze}" var="pizzaItem">	 
+							<c:forEach items="${ordineDelete.pizze}" var="pizzaItem">	 
 							<c:out value="${pizzaItem.descrizione}" />
 							</c:forEach>
-						</dd>
-					</dl>
-					<dl class="row">
-						<dt class="col-sm-3 text-right">Data:</dt>
-						<dd class="col-sm-9">
-							<c:out value="${pizzaItem.data}" />
 						</dd>
 					</dl>
 
@@ -75,6 +69,9 @@
 				<div class='card-footer'>
 					<a href="ExecuteListOrdineServlet" class='btn btn-outline-dark'
 						style='width: 100px'> <i class='fa fa-chevron-left'></i> Indietro
+					</a>
+					<a href="ExecuteDeleteOrdineServlet?idOrdine=${ordineDelete.id}" class='btn btn-outline-danger'
+						style='width: 100px'> <i class='fa fa-chevron-left'></i> Conferma
 					</a>
 				</div>
 				<!-- end card -->

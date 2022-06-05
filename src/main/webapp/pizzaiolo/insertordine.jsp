@@ -82,7 +82,7 @@
 								<div class="col-md-6">
 									<c:if test="${pizze_descrizioni_attribute.contains(pizzaItem.descrizione)}">
 										<div class="form-check form-check-inline">
-											<input checked class="form-check-input" type="checkbox"
+											<input  class="form-check-input" type="checkbox"
 												id="inlineCheckbox1" name="pizzascelta"
 												value="<c:out value="${pizzaItem.id}"/>" /> <label
 												class="form-check-label" for="inlineCheckbox1"><c:out

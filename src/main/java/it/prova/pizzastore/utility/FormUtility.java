@@ -1,6 +1,7 @@
 package it.prova.pizzastore.utility;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -55,7 +56,8 @@ public class FormUtility {
 
 	}
 
-	public static Ordine createOrdineFromParams(String codice, String utenteId, String clienteId, String[] idPizze) {
+	@SuppressWarnings("deprecation")
+	public static Ordine createOrdineFromParams(String codice, String utenteId, String clienteId, String[] idPizze, String data) {
 		Ordine ordineFromParams = new Ordine();
 		List<Pizza> listaPizze = new ArrayList<Pizza>();
 		ordineFromParams.setCodice(codice);
@@ -76,6 +78,7 @@ public class FormUtility {
 				}
 				ordineFromParams.setPizze(listaPizze);
 				ordineFromParams.setClosed(false);
+				ordineFromParams.setData(new Date(data));
 
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -29,7 +29,7 @@
 
 			<div class='card'>
 				<div class='card-header'>
-					<h5>Inserisci nuovo ordine</h5>
+					<h5>Modifca ordine</h5>
 				</div>
 				<div class='card-body'>
 
@@ -38,7 +38,7 @@
 					</h6>
 
 
-					<form method="post" action="ExecuteInsertOrdineServlet"
+					<form method="post" action="ExecuteUpdateOrdineServlet"
 						class="row g-3" novalidate="novalidate">
 
 
@@ -66,7 +66,7 @@
 								<option value="" selected>-- Selezionare un utente --</option>
 								<c:forEach items="${utenti_attribute}" var="utenteItem">
 									<option value="${utenteItem.id}"
-										${ordine.utente.id == ordineItem.id?'selected':''}>${utenteItem.nome}
+										${ordine.utente.id == utenteItem.id?'selected':''}>${utenteItem.nome}
 										${utenteItem.cognome}</option>
 								</c:forEach>
 							</select>
@@ -74,7 +74,7 @@
 						<div class="col-md-6">
 							<label for="data" class="form-label">Data</label> <input
 								class="form-control" id="data" type="date"
-								placeholder="dd/MM/yy" title="formato : gg/mm/aaaa" name="data">
+								placeholder="dd/MM/yy" title="formato : gg/mm/aaaa" name="data" value="${ordine.data}">
 						</div>
 
 						<c:forEach items="${pizze_attribute}" var="pizzaItem">
@@ -105,7 +105,7 @@
 								</c:if>
 							</c:if>
 						</c:forEach>
-
+						<input type="hidden" name="idOrdine" value="${ordine.id }"/>
 						<div class="col-12">
 							<button type="submit" name="insertSubmit" value="insertSubmit"
 								id="insertSubmit" class="btn btn-dark">Conferma</button>
