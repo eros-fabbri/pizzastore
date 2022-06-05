@@ -14,6 +14,8 @@ public interface OrdineDAO extends IBaseDAO<Ordine> {
 	public List<Ordine> getOrdiniAttivi(Utente utente) throws Exception;
 	
 	public Optional<Ordine> findOneEager(Long id) throws Exception;
+	
+	public List<Ordine> findByExample(Ordine example) throws Exception;
 
 	
 }

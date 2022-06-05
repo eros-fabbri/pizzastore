@@ -164,7 +164,7 @@ public class OrdineServiceImpl implements OrdineService {
 			ordineDao.setEntityManager(entityManager);
 
 			// eseguo quello che realmente devo fare
-			return null; /* DA MODOFICARE */
+			return ordineDao.findByExample(input);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
