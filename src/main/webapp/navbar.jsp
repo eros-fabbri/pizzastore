@@ -1,4 +1,4 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <header>
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark"
@@ -19,12 +19,12 @@
 						class="nav-link dropdown-toggle" href="#" id="dropdown07"
 						data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown07">
-							<li><a class="dropdown-item" href="ListArticoliServlet">Lista
-									Elementi</a></li>
-							<li><a class="dropdown-item"
-								href="PrepareInsertArticoloServlet">Inserisci Nuovo</a></li>
-							<li><a class="dropdown-item"
-								href="PrepareSearchServlet">Ricerca</a></li>
+						<c:if test="${userInfo.isPizzaiolo()}">
+							<li><a class="dropdown-item" href="PrepareSearchPizzaServlet">Ricerca
+									Pizza</a></li>
+							<li><a class="dropdown-item" href="PrepareSearchOrdineServlet">Ricerca
+									Ordine</a></li>
+						</c:if>
 						</ul></li>
 
 				</ul>

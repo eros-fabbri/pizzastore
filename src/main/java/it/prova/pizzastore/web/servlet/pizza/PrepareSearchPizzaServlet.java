@@ -1,4 +1,4 @@
-package it.prova.pizzastore.web.servlet;
+package it.prova.pizzastore.web.servlet.pizza;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.prova.pizzastore.model.Utente;
 
-@WebServlet("/PrepareSearchServlet")
-public class PrepareSearchServlet extends HttpServlet {
+@WebServlet("/PrepareSearchPizzaServlet")
+public class PrepareSearchPizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
